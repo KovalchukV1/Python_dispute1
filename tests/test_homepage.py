@@ -1,16 +1,17 @@
 import pytest
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support import expected_conditions as ec
-from selenium.webdriver.support.ui import WebDriverWait
+
+from pom.homePage_nav import HomepageNav
+
+
 
 @pytest.mark.usefixtures('setup')
-class TestHomeGape:
+class TestHomePage:
 
-    def test_homepage(self):
-        driver = webdriver.Chrome()
-        driver.implicitly_wait(3)
-        element1 = driver.find_element(By.ID, '')
+    def test_nav_links(self):
+        homepage_nav = HomepageNav(self.driver)
+        actual_links = homepage_nav.get_nav_links_text()
+        expected_links = homepage_nav.NAV_LINK_TEXT
+        assert expected_links == actual_links, 'Validating NavLinks text'
 
-        wait = WebDriverWait(driver, 15, 0.3,)
-        element = wait.until(ec.visibility_of_element_located(By.ID, ''))
+
+
