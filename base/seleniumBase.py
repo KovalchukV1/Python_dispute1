@@ -9,7 +9,7 @@ from typing import List
 class SeleniumBase:
     def __init__(self, driver):
         self.driver = driver
-        self.__wait = WebDriverWait(driver, 15, 0.3)
+        self.__wait = WebDriverWait(driver, 15, 0.3, ignored_exceptions=StaleElementReferenceException)
 
     def __get_selenium_by(self, find_by: str) -> dict:
         '''Return a dictionary, where Keys are Strings representing a search locator strategies and Values are related By class values'''
@@ -59,3 +59,4 @@ class SeleniumBase:
     def delete_cookie(self, cookie_name: str) -> None:
         '''Delete a cookie by a name'''
         self.driver.delete_cookie(cookie_name)
+
