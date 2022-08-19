@@ -27,3 +27,4 @@ class HomepageNav(SeleniumBase):
         '''Return a nav link WebElement, the input is a link's name'''
         elements = self.get_nav_links()
         return self.get_element_by_text(elements, name)
+
